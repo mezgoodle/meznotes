@@ -2,6 +2,9 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+from .models import Workout
+from .serializers import WorkoutSerializer
+
 
 @api_view(['GET'])
 def get_routes(request):
@@ -42,4 +45,6 @@ def get_routes(request):
 
 @api_view(['GET'])
 def get_workouts(request):
-    return Response('Workouts')
+    workouts = Workout.objects.all()
+    serializer = WorkoutSerializer(workouts, many=True)
+    return Response(serializer.data)
