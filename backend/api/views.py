@@ -48,3 +48,10 @@ def get_workouts(request):
     workouts = Workout.objects.all()
     serializer = WorkoutSerializer(workouts, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_workout(request, pk):
+    workout = Workout.objects.get(id=pk)
+    serializer = WorkoutSerializer(workout, many=False)
+    return Response(serializer.data)
