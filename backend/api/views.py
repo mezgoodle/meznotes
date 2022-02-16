@@ -38,3 +38,8 @@ def get_routes(request):
         },
     ]
     return Response(routes)
+
+
+@api_view(['GET'])
+def get_workouts(request):
+    return Response('Workouts')
