@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
 
 export const Header = () => {
   return (
-    <div><h1>Header</h1></div>
-  )
-}
+    <div className="app-header">
+      <h1>Note List</h1>
+    </div>
+  );
+};
