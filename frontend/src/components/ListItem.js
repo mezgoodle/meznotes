@@ -1,7 +1,11 @@
 import React from "react";
 
 const ListItem = ({ note }) => {
-  return <div>ListItem</div>;
+  return (
+    <div>
+      <h3>{note.name}</h3>
+    </div>
+  );
 };
 
 export default ListItem;
