@@ -9,7 +9,7 @@ const NotesListPage = () => {
   }, []);
 
   const getNotes = async () => {
-    const response = await fetch("http://127.0.0.1:8000/api/workouts/");
+    const response = await fetch("/api/workouts/");
     const data = await response.json();
     setNotes(data);
   };
