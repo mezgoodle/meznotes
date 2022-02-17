@@ -10,12 +10,17 @@ const NotesListPage = () => {
 	const getNotes = async () => {
 		const response = await fetch('http://127.0.0.1:8000/api/workouts/');
 		const data = await response.json();
-		console.log(data);
 		setNotes(data);
 	}
 
   return (
-    <div>NotesListPage</div>
+    <div>
+      <div className='notes-list'>
+        {notes.map((note, index) => (
+          <h3 key={index}>{note.name}</h3>
+        ))}
+      </div>
+	</div>
   )
 }
 
