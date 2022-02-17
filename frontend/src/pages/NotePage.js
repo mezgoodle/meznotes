@@ -10,14 +10,14 @@ const NotePage = () => {
   }, [params.id]);
 
   const getNote = async () => {
-    const response = await fetch(`/api/workouts/${params.id}/`);
+    const response = await fetch(`/api/notes/${params.id}/`);
     const data = await response.json();
     setNote(data);
   };
 
   return (
     <div>
-      <p>{note?.name}</p>
+      <p>{note?.body}</p>
     </div>
   );
 };
