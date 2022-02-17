@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .models import Workout
-from .serializers import WorkoutSerializer
+from .models import Note
+from .serializers import NoteSerializer
 
 
 @api_view(['GET'])
@@ -44,14 +44,14 @@ def get_routes(request):
 
 
 @api_view(['GET'])
-def get_workouts(request):
-    workouts = Workout.objects.all()
-    serializer = WorkoutSerializer(workouts, many=True)
+def get_notes(request):
+    notes = Note.objects.all()
+    serializer = NoteSerializer(notes, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
-def get_workout(request, pk):
-    workout = Workout.objects.get(id=pk)
-    serializer = WorkoutSerializer(workout, many=False)
+def get_note(request, pk):
+    note = Note.objects.get(id=pk)
+    serializer = NoteSerializer(note, many=False)
     return Response(serializer.data)

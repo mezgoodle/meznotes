@@ -1,8 +1,8 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Workout
+from .models import Note
 
 
-class WorkoutSerializer(ModelSerializer):
+class NoteSerializer(ModelSerializer):
     class Meta:
-        model = Workout
+        model = Note
         fields = '__all__'
