@@ -13,10 +13,21 @@ const NotePage = () => {
   }, [params.id]);
 
   const getNote = async () => {
+    if (noteId === "new") return;
     const response = await fetch(`/api/notes/${noteId}/`);
     const data = await response.json();
     setNote(data);
   };
+
+  // const createNote = async () => {
+  //   await fetch(`/api/notes/${noteId}/update`, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(note),
+  //   });
+  // };
 
   const updateNote = async () => {
     await fetch(`/api/notes/${noteId}/update`, {
@@ -39,7 +50,11 @@ const NotePage = () => {
   };
 
   const handleSubmit = () => {
-    updateNote();
+    if (noteId !== "new" && !note.body) {
+      deleteNote();
+    } else if (noteId !== "new") {
+      updateNote();
+    }
     navigate("/");
   };
 
