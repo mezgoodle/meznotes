@@ -4,6 +4,7 @@ import { ReactComponent as ArrowLeft } from "../assets/arrow-left.svg";
 
 const NotePage = () => {
   const params = useParams();
+  const noteId = params.id;
   const navigate = useNavigate();
   let [note, setNote] = useState(null);
 
@@ -12,13 +13,13 @@ const NotePage = () => {
   }, [params.id]);
 
   const getNote = async () => {
-    const response = await fetch(`/api/notes/${params.id}/`);
+    const response = await fetch(`/api/notes/${noteId}/`);
     const data = await response.json();
     setNote(data);
   };
 
   const updateNote = async () => {
-    await fetch(`/api/notes/${params.id}/update`, {
+    await fetch(`/api/notes/${noteId}/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +29,7 @@ const NotePage = () => {
   };
 
   const deleteNote = async () => {
-    await fetch(`/api/notes/${params.id}/delete`, {
+    await fetch(`/api/notes/${noteId}/delete`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +49,11 @@ const NotePage = () => {
         <h3>
           <ArrowLeft onClick={handleSubmit} />
         </h3>
-        <button onClick={deleteNote}>Delete</button>
+        {noteId !== "new" ? (
+          <button onClick={deleteNote}>Delete</button>
+        ) : (
+          <button>Done</button>
+        )}
       </div>
       <textarea
         onChange={(e) => {
