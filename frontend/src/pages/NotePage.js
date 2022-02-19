@@ -60,6 +60,11 @@ const NotePage = () => {
     navigate("/");
   };
 
+  let handleChange = (value) => {
+    setNote((note) => ({ ...note, body: value }));
+    console.log("Handle Change:", note);
+  };
+
   return (
     <div className="note">
       <div className="note-header">
@@ -74,9 +79,9 @@ const NotePage = () => {
       </div>
       <textarea
         onChange={(e) => {
-          setNote({ ...note, body: e.target.value });
+          handleChange(e.target.value);
         }}
-        defaultValue={note?.body}
+        value={note?.body}
       ></textarea>
     </div>
   );
