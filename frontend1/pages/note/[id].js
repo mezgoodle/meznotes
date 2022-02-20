@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import Image from "next/image";
 import arrow from "../../assets/arrow-left.svg";
 
@@ -57,24 +58,33 @@ export default function Note({ data, id }) {
   };
 
   return (
-    <div className="note">
-      <div className="note-header">
-        <h3>
-          <Image src={arrow} alt="Back to the list" onClick={handleSubmit} />
-        </h3>
+    <>
+      <Head>
         {id !== "new" ? (
-          <button onClick={deleteNote}>Delete</button>
+          <title>Editing note {id}</title>
         ) : (
-          <button onClick={handleSubmit}>Done</button>
+          <title>Adding new note</title>
         )}
+      </Head>
+      <div className="note">
+        <div className="note-header">
+          <h3>
+            <Image src={arrow} alt="Back to the list" onClick={handleSubmit} />
+          </h3>
+          {id !== "new" ? (
+            <button onClick={deleteNote}>Delete</button>
+          ) : (
+            <button onClick={handleSubmit}>Done</button>
+          )}
+        </div>
+        <textarea
+          onChange={(e) => {
+            handleChange(e.target.value);
+          }}
+          value={note?.body}
+        ></textarea>
       </div>
-      <textarea
-        onChange={(e) => {
-          handleChange(e.target.value);
-        }}
-        value={note?.body}
-      ></textarea>
-    </div>
+    </>
   );
 }
 
