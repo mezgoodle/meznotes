@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+import AddButton from "../components/AddButton";
 import ListItem from "../components/ListItem";
 
 export default function Home({ data }) {
@@ -20,7 +21,7 @@ export default function Home({ data }) {
           <ListItem key={index} note={note} />
         ))}
       </div>
-      {/* <AddButton /> */}
+      <AddButton />
     </div>
   );
 }
