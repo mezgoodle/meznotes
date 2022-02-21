@@ -6,10 +6,14 @@ import ListItem from "../components/ListItem";
 
 export default function Home({ data }) {
   const [notes, setNotes] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     setNotes(data);
+    setLoading(false);
   }, []);
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <>
