@@ -37,10 +37,8 @@ export default function Home({ data }) {
 }
 
 export async function getStaticProps() {
-  // Fetch data from external API
   const response = await fetch("http://127.0.0.1:8000/api/notes/");
   const data = await response.json();
 
-  // Pass data to the page via props
   return { props: { data } };
 }
