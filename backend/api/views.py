@@ -59,6 +59,11 @@ class NoteList(APIView):
         note = Note.objects.create(
             body=data['body']
         )
+        try:
+            serializer = NoteSerializer(note, many=False)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         serializer = NoteSerializer(note, many=False)
         if serializer.is_valid():
             serializer.save()

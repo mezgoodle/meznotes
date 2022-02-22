@@ -13,7 +13,7 @@ export default function Note({ data, id }) {
   }, [id]);
 
   const createNote = async () => {
-    await fetch(`http://127.0.0.1:8000/api/notes/create`, {
+    await fetch(`http://127.0.0.1:8000/api/notes/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
