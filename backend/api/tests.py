@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
 
 from .models import Note
 
@@ -21,14 +23,36 @@ class ApiViewTest(TestCase):
         Note.objects.create(body='Test note')
 
     def test_view_routes(self):
-        resp = self.client.get(reverse('routes'))
-        self.assertEqual(resp.status_code, 200)
+        url = reverse('routes')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
     def test_view_notes(self):
-        resp = self.client.get(reverse('notes'))
-        self.assertEqual(resp.status_code, 200)
+        url = reverse('notes')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
     def test_view_note(self):
-        resp = self.client.get(reverse('note', kwargs={'pk':1}))
-        self.assertEqual(resp.status_code, 200)
-        print(resp.content)
+        url = reverse('note', kwargs={'pk':1})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+
+class NoteTests(APITestCase):
+    @classmethod
+    def setUpTestData(cls):
+        Note.objects.create(body='Test note')
+
+    def test_create_note(self):
+        url = reverse('notes')
+        data = {'body': 'Test note'}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Note.objects.count(), 2)
+        self.assertEqual(Note.objects.first().body, 'Test note')
+
+    def test_get_note(self):
+        url = reverse('note', kwargs={'pk':1})
+        response = self.client.get(url)
+        self.assertEqual(response.data['id'], 1)
+        self.assertEqual(response.data['body'], 'Test note')
