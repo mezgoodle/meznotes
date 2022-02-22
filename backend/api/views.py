@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -64,11 +64,37 @@ class NoteList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class NoteDetail(APIView):
+    """
+    Retrieve, update or delete a note instance.
+    """
+    def get_object(self, pk: str):
+        try:
+            return Note.objects.get(pk=pk)
+        except Note.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        note = self.get_object(pk)
+        print(note)
         serializer = NoteSerializer(note, many=False)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        data = request.data
+        note = self.get_object(pk)
+        serializer = NoteSerializer(instance=note, data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        note = self.get_object(pk)
+        note.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 @api_view(['GET'])

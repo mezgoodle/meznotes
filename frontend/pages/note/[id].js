@@ -23,7 +23,7 @@ export default function Note({ data, id }) {
   };
 
   const updateNote = async () => {
-    await fetch(`http://127.0.0.1:8000/api/notes/${id}/update`, {
+    await fetch(`http://127.0.0.1:8000/api/notes/${id}/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export default function Note({ data, id }) {
   };
 
   const deleteNote = async () => {
-    await fetch(`http://127.0.0.1:8000/api/notes/${id}/delete`, {
+    await fetch(`http://127.0.0.1:8000/api/notes/${id}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
