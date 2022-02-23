@@ -3,7 +3,6 @@ import Head from "next/head";
 
 import AddButton from "../components/AddButton";
 import ListItem from "../components/ListItem";
-import styles from "../styles/notes.module.css";
 
 export default function Home({ data }) {
   const [notes, setNotes] = useState([]);
@@ -21,12 +20,12 @@ export default function Home({ data }) {
       <Head>
         <title>Notes list</title>
       </Head>
-      <div className={styles.notes}>
-        <div className={styles["notes-header"]}>
-          <h2 className={styles["notes-title"]}>&#9782; Notes</h2>
-          <p className={styles["notes-count"]}>{notes.length}</p>
+      <div className="notes">
+        <div className="notes-header">
+          <h2 className="notes-title">&#9782; Notes</h2>
+          <p className="notes-count">{notes.length}</p>
         </div>
-        <div className={styles["notes-list"]}>
+        <div className="notes-list">
           {notes.map((note, index) => (
             <ListItem key={index} note={note} />
           ))}
