@@ -57,6 +57,10 @@ export default function Note({ data, id }) {
     setNote((note) => ({ ...note, body: value }));
   };
 
+  const handleToggle = () => {
+    setNote((note) => ({ ...note, completed: !note.completed }));
+  };
+
   return (
     <>
       <Head>
@@ -76,6 +80,14 @@ export default function Note({ data, id }) {
           ) : (
             <button onClick={handleSubmit}>Done</button>
           )}
+        </div>
+        <div>
+          Completed:{" "}
+          <input
+            type="checkbox"
+            checked={note?.completed}
+            onChange={handleToggle}
+          />
         </div>
         <textarea
           onChange={(e) => {
