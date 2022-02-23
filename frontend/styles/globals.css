@@ -215,6 +215,10 @@ a {
   scrollbar-width: none;
 }
 
+.note-checkbox {
+  padding: 16px 12px;
+}
+
 .note textarea:active,
 .note textarea:focus {
   outline: none;

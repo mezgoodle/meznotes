@@ -81,7 +81,7 @@ export default function Note({ data, id }) {
             <button onClick={handleSubmit}>Done</button>
           )}
         </div>
-        <div>
+        <div className="note-checkbox">
           Completed:{" "}
           <input
             type="checkbox"
