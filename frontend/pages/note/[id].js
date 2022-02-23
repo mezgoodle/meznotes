@@ -6,7 +6,7 @@ import arrow from "../../assets/arrow-left.svg";
 
 export default function Note({ data, id }) {
   const router = useRouter();
-  const [note, setNote] = useState(null);
+  const [note, setNote] = useState({});
 
   useEffect(() => {
     setNote(data);
@@ -87,6 +87,7 @@ export default function Note({ data, id }) {
             type="checkbox"
             checked={note?.completed}
             onChange={handleToggle}
+            disabled={id === "new" ? true : false}
           />
         </div>
         <textarea
