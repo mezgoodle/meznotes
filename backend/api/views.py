@@ -78,7 +78,6 @@ class NoteDetail(APIView):
 
     def get(self, request, pk, format=None):
         note = self.get_object(pk)
-        print(note)
         serializer = NoteSerializer(note, many=False)
         return Response(serializer.data)
 
