@@ -16,13 +16,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        working-directory: ./backend
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Move to backend folder
-        run: |
-          cd ./backend
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
