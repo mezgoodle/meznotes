@@ -28,7 +28,7 @@ const ListItem = ({ note }) => {
   };
 
   return (
-    <Link href={`/note/${note.id}`}>
+    <Link href={`/note/${note.id}`} passHref>
       <div className="notes-list-item">
         <h3>{getTitle(note)}</h3>
         <p>

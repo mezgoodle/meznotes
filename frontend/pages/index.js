@@ -11,7 +11,7 @@ export default function Home({ data }) {
   useEffect(() => {
     setNotes(data);
     setLoading(false);
-  }, []);
+  }, [data]);
 
   if (isLoading) return <p>Loading...</p>;
 

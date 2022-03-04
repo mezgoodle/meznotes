@@ -10,7 +10,7 @@ export default function Note({ data, id }) {
 
   useEffect(() => {
     setNote(data);
-  }, [id]);
+  }, [data]);
 
   const createNote = async () => {
     await fetch(`http://127.0.0.1:8000/api/notes/`, {
