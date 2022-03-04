@@ -33,7 +33,7 @@ class ApiViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_view_note(self):
-        url = reverse('note', kwargs={'pk':1})
+        url = reverse('note', kwargs={'pk': 1})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
@@ -52,7 +52,7 @@ class NoteTests(APITestCase):
         self.assertEqual(Note.objects.first().body, 'Test note')
 
     def test_get_note(self):
-        url = reverse('note', kwargs={'pk':1})
+        url = reverse('note', kwargs={'pk': 1})
         response = self.client.get(url)
         self.assertEqual(response.data['id'], 1)
         self.assertEqual(response.data['body'], 'Test note')
