@@ -9,9 +9,9 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    # defaults:
-    #   run:
-    #     working-directory: ./frontend/
+    defaults:
+      run:
+        working-directory: ./frontend/
 
     strategy:
       matrix:
